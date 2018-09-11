@@ -1,0 +1,47 @@
+# makefile for c++
+CXX := g++
+V:=@
+debug = echo
+
+# you'd better define and use CXXFLAGS with CXX, or may be wrong!!
+CXXFLAGS := -g -Wall -std=c++14 -lpthread
+slash := /
+cpp_postfix :=  .cpp
+
+target := run_current.out
+#        ./exercise/   is wrong , but why???
+dir := ./exercise
+source :=  $(dir)$(slash)main.cpp  $(dir)$(slash)producer_consumer.cpp
+source +=  $(dir)$(slash)my_system_related.cpp
+object := $(patsubst %$(cpp_postfix), %.o, $(source))
+
+$(target):$(object)
+	$(V)$(CXX)  -o $@ $^ $(CXXFLAGS) $(LDFLAGS)
+
+%.o:%$(cpp_postfix)
+	$(V)$(CXX) -o $@ -c $< $(CXXFLAGS)
+
+#(exp)--> group;  \1  --> group 1; 
+# 4th line:   replace "$@:" with "$*.o $@:"
+%.d:%$(cpp_postfix)
+	@set -e; \
+	rm -f $@ ; \
+	$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$ ;\
+	sed 's,\($*\)|.o[ :]*, \1.o $@:,g' < $@.$$$$ >$@; \
+	rm -f $@.$$$$ 
+
+-include $(object:.o=.d)
+
+
+.PHONY:test 
+test:
+	echo $(object)
+.PHONY:clean 
+clean: 
+	rm -f *.[od]
+	rm -f .$(slash)exercise$(slash)*.[od]
+
+
+
+
+
