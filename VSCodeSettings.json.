@@ -1,0 +1,26 @@
+{
+    "editor.fontSize": 18,
+    "workbench.colorTheme": "Default Dark+",
+    "extensions.ignoreRecommendations": false,
+    "workbench.statusBar.feedback.visible": false,
+    "window.zoomLevel": 1,
+    "explorer.confirmDelete": false,
+    "update.channel": "none",
+    "files.autoSave": "onWindowChange",
+    "explorer.confirmDragAndDrop": false,
+    "workbench.activityBar.visible": true,
+    "workbench.statusBar.visible": true,
+    "fileheader.customMade": {
+        "Author": "Mr Bian",
+        "LastEditors": "Mr Bian",
+        "version" : "",
+        "Description": ""
+    },
+    "editor.minimap.enabled": false,
+    "cppcheck.standard": [
+        "c11",
+        "c++11"
+    ],
+    "terminal.integrated.rendererType": "dom",
+    "java.errors.incompleteClasspath.severity": "ignore",
+}
